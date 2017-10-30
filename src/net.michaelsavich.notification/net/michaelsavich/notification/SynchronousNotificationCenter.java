@@ -1,6 +1,6 @@
 package net.michaelsavich.notification;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  * An instance of NotificationCenter that dispatches {@link Notification notifications} to their {@link NotificationObserver observers} serially.
@@ -23,7 +23,7 @@ public class SynchronousNotificationCenter extends NotificationCenter {
 	 */
 	@Override
 	public void post(Notification notification) {
-		dispatchTable.getOrDefault(notification.getName(), Set.of())
+		dispatchTable.getOrDefault(notification.getName(), new HashSet<>())
 				.forEach(o -> o.receiveNotification(notification));
 	}
 
