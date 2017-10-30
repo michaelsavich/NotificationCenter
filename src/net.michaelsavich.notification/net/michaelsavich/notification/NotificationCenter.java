@@ -48,8 +48,12 @@ public abstract class NotificationCenter {
 	 * @return An instance of a concrete NotificationCenter subclass.
 	 */
 	public static NotificationCenter primaryAsync() {
-		throw new UnsupportedOperationException("Unimplemented method!");
+		if (primaryAsync == null) {
+			primaryAsync = new AsynchronousNotificationCenter();
+		}
+		return primaryAsync;
 	}
+	private static AsynchronousNotificationCenter primaryAsync = null;
 
 	/**
 	 * The Map used to route incoming {@link Notification} objects to their registered {@link NotificationObserver NotificationObservers}.
