@@ -25,9 +25,9 @@ public class AsynchronousNotificationCenter extends NotificationCenter {
 	 */
 	@Override
 	public void post(Notification notification) {
-		dispatchTable.getOrDefault(notification.getName(), new HashSet<>())
-				.forEach((o) -> o.receiveNotification(notification));
-
+		getObservers(notification.getName()).stream()
+		.map((o) -> (Runnable) () -> o.receiveNotification(notification))
+		.forEach(ex::execute);
 	}
 	private ExecutorService ex = Executors.newFixedThreadPool(getRuntime().availableProcessors());
 }
