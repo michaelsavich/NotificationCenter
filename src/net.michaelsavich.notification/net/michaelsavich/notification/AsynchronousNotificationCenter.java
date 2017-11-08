@@ -20,7 +20,7 @@ public class AsynchronousNotificationCenter extends NotificationCenter {
 	 * The implementation of this method provided by AsynchronousNotificationCenter is asynchronous.
 	 * </p>
 	 * <p>
-	 * When calling this method, remember that no guarantee is made regarding the order in which  are notified.
+	 * When calling this method, remember that no guarantee is made regarding the order in which observers are notified.
 	 * </p>
 	 */
 	@Override
