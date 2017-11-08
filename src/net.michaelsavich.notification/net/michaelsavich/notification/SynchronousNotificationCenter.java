@@ -23,7 +23,7 @@ public class SynchronousNotificationCenter extends NotificationCenter {
 	 */
 	@Override
 	public void post(Notification notification) {
-		dispatchTable.getOrDefault(notification.getName(), new HashSet<>())
+			getObservers(notification.getName())
 				.forEach(o -> o.receiveNotification(notification));
 	}
 
