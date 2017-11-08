@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * NotificationCenter objects register {@link NotificationObserver NotificationObservers}
@@ -57,10 +60,12 @@ public abstract class NotificationCenter {
 
 	/**
 	 * The Map used to route incoming {@link Notification} objects to their registered {@link NotificationObserver NotificationObservers}.
-	 * Primarily of interest to subclasses. <p>Note that if a subclass overrides all methods of NotificationCenter, it is safe to ignore this field
-	 * and use a different class to store the information required for dispatching.</p>
 	 */
-	protected Map<String,Set<NotificationObserver>> dispatchTable = new HashMap<>();
+	private Map<String,Set<NotificationObserver>> dispatchTable = new HashMap<>();
+
+	protected Set<NotificationObserver> getObservers(String notificationName) {
+		return dispatchTable.getOrDefault(notificationName, new HashSet());
+	}
 
 	/**
 	 * Posts a {@link Notification} that observers can react to.
