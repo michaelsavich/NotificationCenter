@@ -2,5 +2,10 @@
 Yet another implementation of NSNotificationCenter in Java. ☕️
 
 
-Hello! This project isn't finished yet. 😅 A whiz-bang proper README will come as soon as it's done. 
-In the meantime, feel free to download doc.zip and browse the documentation currently available, or just browse the source files.
+More detailed information coming soon, but for now, example usage: 
+
+
+    class Foo implements NotificationObserver {//...}
+    Foo f = new Foo();
+    NotificationCenter.primary.addObserver(f,"somethingDidChange");
+    NotificationCenter.primary.post("somethingDidChange");
